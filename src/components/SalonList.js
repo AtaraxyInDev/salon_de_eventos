@@ -1,6 +1,7 @@
-// src/components/SalonList.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const SalonList = () => {
     const [salons, setSalons] = useState([]);
@@ -16,14 +17,26 @@ const SalonList = () => {
     }, []);
 
     return (
-        <div>
-            <h2>Salones</h2>
-            <ul>
+        <Container>
+            <h2>Salones Disponibles</h2>
+            <Row>
                 {salons.map(salon => (
-                    <li key={salon.id}>{salon.name} - {salon.location}</li>
+                    <Col key={salon.id} sm={12} md={6} lg={4} className="mb-4">
+                        <Card>
+                            <Card.Body>
+                                <Card.Title>{salon.name}</Card.Title>
+                                <Card.Text>Ubicación: {salon.location}</Card.Text>
+                                <Card.Text>Capacidad: {salon.capacity} personas</Card.Text>
+                                <Card.Text>Tipo de Evento: {salon.eventType}</Card.Text>
+                                <Link to={`/salon/${salon.id}`}>
+                                    <Button variant="primary">Ver Participantes</Button>
+                                </Link>
+                            </Card.Body>
+                        </Card>
+                    </Col>
                 ))}
-            </ul>
-        </div>
+            </Row>
+        </Container>
     );
 };
 
