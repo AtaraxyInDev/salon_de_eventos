@@ -1,14 +1,17 @@
 // src/components/Footer.js
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
+import { useTheme } from '../contexts/ThemeContext';
 
 const Footer = () => {
+    const { isDarkMode } = useTheme();
+
     return (
-        <footer className="bg-dark text-white py-3 mt-auto">
+        <footer className={`py-3 mt-auto ${isDarkMode ? 'footer-light' : 'footer-dark'}`}>
             <Container>
-                <Row>
+                <Row className="justify-content-center">
                     <Col className="text-center">
-                        &copy; 2024 Reservas de Salones. Todos los derechos reservados.
+                        © 2024 Reservas de Salones. Todos los derechos reservados.
                     </Col>
                 </Row>
             </Container>

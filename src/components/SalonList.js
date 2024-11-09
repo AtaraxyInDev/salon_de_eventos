@@ -1,3 +1,4 @@
+// src/components/SalonList.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
@@ -18,7 +19,7 @@ const SalonList = () => {
 
     return (
         <Container>
-            <h2>Salones Disponibles</h2>
+            <h2 className="text-center">Salones Disponibles</h2>
             <Row>
                 {salons.map(salon => (
                     <Col key={salon.id} sm={12} md={6} lg={4} className="mb-4">

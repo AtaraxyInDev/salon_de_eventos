@@ -1,32 +1,65 @@
 /* src/App.css */
+
 body {
-  font-family: 'Arial', sans-serif;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-h1, h2, h3 {
-  text-align: center;
-  margin-bottom: 20px;
+.bg-light {
+    background-color: #f8f9fa !important;
 }
 
-.navbar-brand, .nav-link {
-  font-weight: bold;
+.bg-dark {
+    background-color: #343a40 !important;
 }
 
-footer {
-  position: relative;
-  bottom: 0;
-  width: 100%;
+.text-dark {
+    color: #343a40 !important;
 }
 
-.container {
-  max-width: 960px;
-  margin: 0 auto;
+.text-white {
+    color: #d3d3d3 !important; 
 }
 
-.mt-4 {
-  margin-top: 1.5rem !important;
+.navbar-dark {
+    background-color: #343a40 !important;
+    color: #d3d3d3 !important; 
 }
 
-.mt-auto {
-  margin-top: auto !important;
+.navbar-light {
+    background-color: #f8f9fa !important;
+    color: #343a40 !important;
+}
+
+.footer-dark {
+    background-color: #343a40 !important;
+    color: #d3d3d3 !important; 
+}
+
+.footer-light {
+    background-color: #f8f9fa !important;
+    color: #343a40 !important;
+}
+
+.btn-dark-mode {
+    background-color: #333; /* Fondo oscuro */
+    color: #d3d3d3; 
+    border: none;
+}
+
+.btn-light-mode {
+    background-color: #f8f9fa;
+    color: #343a40;
+    border: none;
+}
+
+.btn-dark-mode:hover, .btn-light-mode:hover {
+    opacity: 0.8;
+}
+
+.nav-link-dark {
+    color: #d3d3d3 !important; 
+}
+
+.nav-link-light {
+    color: #343a40 !important;
 }
