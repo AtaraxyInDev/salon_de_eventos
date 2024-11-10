@@ -1,12 +1,12 @@
-// src/components/Header.js
+// Header.js
 import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
-import { FaHome, FaClipboardList, FaPlus, FaBuilding } from 'react-icons/fa';
+import { FaHome, FaClipboardList, FaPlus, FaBuilding, FaSun, FaMoon } from 'react-icons/fa';
 import { useTheme } from '../contexts/ThemeContext';
 
 const Header = () => {
-    const { isDarkMode } = useTheme();
+    const { isDarkMode, toggleTheme } = useTheme();
 
     return (
         <Navbar className={`justify-content-between ${isDarkMode ? 'navbar-light bg-light' : 'navbar-dark bg-dark'}`} expand="lg">
@@ -14,9 +14,14 @@ const Header = () => {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mx-auto">
+                    <LinkContainer to="/">
+                        <Nav.Link className={`d-flex align-items-center ${isDarkMode ? 'text-dark' : 'text-white'}`}>
+                            <FaHome className="me-2" /> Inicio
+                        </Nav.Link>
+                    </LinkContainer>
                     <LinkContainer to="/salons">
                         <Nav.Link className={`d-flex align-items-center ${isDarkMode ? 'text-dark' : 'text-white'}`}>
-                            <FaHome className="me-2" /> Salones
+                            <FaClipboardList className="me-2" /> Salones
                         </Nav.Link>
                     </LinkContainer>
                     <LinkContainer to="/reservations">
@@ -36,11 +41,10 @@ const Header = () => {
                     </LinkContainer>
                 </Nav>
                 <Nav>
-                    <LinkContainer to="/">
-                        <Nav.Link className={`d-flex align-items-center ${isDarkMode ? 'text-dark' : 'text-white'}`}>
-                            <FaHome className="me-2" /> Inicio
-                        </Nav.Link>
-                    </LinkContainer>
+                    <Nav.Link onClick={toggleTheme} className={`d-flex align-items-center ${isDarkMode ? 'text-dark' : 'text-white'}`}>
+                        {isDarkMode ? <FaSun className="me-2" /> : <FaMoon className="me-2" />}
+                        {isDarkMode ? 'Modo Claro' : 'Modo Oscuro'}
+                    </Nav.Link>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

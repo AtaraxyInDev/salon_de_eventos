@@ -1,9 +1,14 @@
-/* src/App.css */
-
+/* App.css */
+/* Ajustes generales */
 body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-family: Arial, sans-serif;
     transition: background-color 0.3s, color 0.3s;
 }
 
+/* Ajustes de colores */
 .bg-light {
     background-color: #f8f9fa !important;
 }
@@ -20,6 +25,7 @@ body {
     color: #d3d3d3 !important; 
 }
 
+/* Ajustes de navbar y footer */
 .navbar-dark {
     background-color: #343a40 !important;
     color: #d3d3d3 !important; 
@@ -40,8 +46,9 @@ body {
     color: #343a40 !important;
 }
 
+/* Botones de modo oscuro y claro */
 .btn-dark-mode {
-    background-color: #333; /* Fondo oscuro */
+    background-color: #333;
     color: #d3d3d3; 
     border: none;
 }
@@ -56,6 +63,7 @@ body {
     opacity: 0.8;
 }
 
+/* Enlaces de navegación */
 .nav-link-dark {
     color: #d3d3d3 !important; 
 }

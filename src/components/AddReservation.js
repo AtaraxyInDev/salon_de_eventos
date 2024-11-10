@@ -1,7 +1,6 @@
-// src/components/AddReservation.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Container, Form, Button } from 'react-bootstrap';
+import { Container, Form, Button, Alert, Spinner } from 'react-bootstrap';
 
 const AddReservation = () => {
     const [salons, setSalons] = useState([]);
@@ -13,6 +12,9 @@ const AddReservation = () => {
     const [numberOfGuests, setNumberOfGuests] = useState('');
     const [eventDescription, setEventDescription] = useState('');
     const [specialPreferences, setSpecialPreferences] = useState('');
+    const [loading, setLoading] = useState(false);
+    const [message, setMessage] = useState('');
+    const [variant, setVariant] = useState('');
 
     useEffect(() => {
         axios.get('/api/salons')
@@ -23,6 +25,13 @@ const AddReservation = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (!selectedSalon || !date || !userName || !userEmail || !userPhone) {
+            setMessage('Por favor, completa todos los campos requeridos.');
+            setVariant('danger');
+            return;
+        }
+
+        setLoading(true);
         const newReservation = { 
             salon: { id: selectedSalon }, 
             date, 
@@ -36,16 +45,30 @@ const AddReservation = () => {
         };
         axios.post('/api/reservations', newReservation)
             .then(response => {
-                alert('Reserva creada!');
+                setMessage('Reserva creada exitosamente!');
+                setVariant('success');
+                setLoading(false);
+                // Limpiar formulario
+                setSelectedSalon('');
+                setDate('');
+                setUserName('');
+                setUserEmail('');
+                setUserPhone('');
+                setNumberOfGuests('');
+                setEventDescription('');
+                setSpecialPreferences('');
             })
             .catch(error => {
-                console.error('Hubo un error al crear la reserva!', error);
+                setMessage('Hubo un error al crear la reserva!');
+                setVariant('danger');
+                setLoading(false);
             });
     };
 
     return (
         <Container>
             <h2>Crear Reserva</h2>
+            {message && <Alert variant={variant}>{message}</Alert>}
             <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="formSalon">
                     <Form.Label>Salón</Form.Label>
@@ -78,14 +101,14 @@ const AddReservation = () => {
                 </Form.Group>
                 <Form.Group controlId="formEventDescription">
                     <Form.Label>Descripción del Evento</Form.Label>
-                    <Form.Control type="text" value={eventDescription} onChange={e => setEventDescription(e.target.value)} />
+                    <Form.Control as="textarea" rows={3} value={eventDescription} onChange={e => setEventDescription(e.target.value)} />
                 </Form.Group>
                 <Form.Group controlId="formSpecialPreferences">
                     <Form.Label>Preferencias Especiales</Form.Label>
-                    <Form.Control type="text" value={specialPreferences} onChange={e => setSpecialPreferences(e.target.value)} />
+                    <Form.Control as="textarea" rows={3} value={specialPreferences} onChange={e => setSpecialPreferences(e.target.value)} />
                 </Form.Group>
-                <Button variant="primary" type="submit" className="mt-3">
-                    Reservar
+                <Button variant="primary" type="submit" className="mt-3" disabled={loading}>
+                    {loading ? <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" /> : 'Reservar'}
                 </Button>
             </Form>
         </Container>

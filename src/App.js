@@ -1,3 +1,4 @@
+// App.js
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
@@ -31,35 +32,9 @@ const MainContent = () => {
                 </Routes>
             </Container>
             <Footer />
-            <ThemeToggleButton />
         </div>
     );
 };
-
-const ThemeToggleButton = () => {
-    const { isDarkMode, toggleTheme } = useTheme();
-
-    return (
-        <button
-            onClick={toggleTheme}
-            style={{
-                position: 'fixed',
-                bottom: '20px',
-                right: '20px',
-                padding: '10px 20px',
-                backgroundColor: isDarkMode ? '#fff' : '#000',
-                color: isDarkMode ? '#000' : '#fff',
-                border: 'none',
-                borderRadius: '5px',
-                cursor: 'pointer'
-            }}
-        >
-            {isDarkMode ? 'Modo Claro' : 'Modo Oscuro'}
-        </button>
-    );
-};
-
-
 
 function App() {
     return (

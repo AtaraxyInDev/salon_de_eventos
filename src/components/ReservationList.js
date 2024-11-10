@@ -1,7 +1,7 @@
-// src/components/ReservationList.js
+// ReservationList.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Container, Row, Col, ListGroup, Button } from 'react-bootstrap';
+import { Container, Row, Col, ListGroup, Button, Badge } from 'react-bootstrap';
 
 const ReservationList = () => {
     const [reservations, setReservations] = useState([]);
@@ -38,20 +38,29 @@ const ReservationList = () => {
     };
 
     return (
-        <Container>
-            <h2>Reservas</h2>
+        <Container fluid>
+            <h2 className="text-center my-4">Reservas</h2>
             <ListGroup>
                 {reservations.map(reservation => (
-                    <ListGroup.Item key={reservation.id}>
+                    <ListGroup.Item key={reservation.id} className="mb-3">
                         <Row>
-                            <Col>
-                                Salón: {reservation.salon ? reservation.salon.name : 'N/A'} - Fecha: {new Date(reservation.date).toLocaleString()} - Confirmada: {reservation.confirmed ? 'Sí' : 'No'}
+                            <Col xs={12} md={8}>
+                                <p><strong>Salón:</strong> {reservation.salon ? reservation.salon.name : 'N/A'}</p>
+                                <p><strong>Fecha:</strong> {new Date(reservation.date).toLocaleString()}</p>
+                                <p><strong>Confirmada:</strong> 
+                                    {reservation.confirmed ? 
+                                        <Badge bg="success">Sí</Badge> : 
+                                        <Badge bg="danger">No</Badge>
+                                    }
+                                </p>
                             </Col>
-                            <Col md="auto">
-                                <Button variant="success" onClick={() => confirmReservation(reservation.id)} disabled={reservation.confirmed}>
+                            <Col xs={12} md={4} className="d-flex justify-content-around align-items-center mt-3 mt-md-0">
+                                <Button variant="success" onClick={() => confirmReservation(reservation.id)} disabled={reservation.confirmed} className="me-2">
                                     Confirmar
                                 </Button>
-                                <Button variant="danger" onClick={() => cancelReservation(reservation.id)}>Cancelar</Button>
+                                <Button variant="danger" onClick={() => cancelReservation(reservation.id)}>
+                                    Cancelar
+                                </Button>
                             </Col>
                         </Row>
                     </ListGroup.Item>
