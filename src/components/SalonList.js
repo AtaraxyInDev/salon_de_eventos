@@ -30,7 +30,7 @@ const SalonList = () => {
                                 <Card.Text>Capacidad: {salon.capacity} personas</Card.Text>
                                 <Card.Text>Tipo de Evento: {salon.eventType}</Card.Text>
                                 <Link to={`/salon/${salon.id}`}>
-                                    <Button variant="primary">Ver Participantes</Button>
+                                    <Button variant="primary">Ver Reservista</Button>
                                 </Link>
                             </Card.Body>
                         </Card>

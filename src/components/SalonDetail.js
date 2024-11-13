@@ -20,7 +20,7 @@ const SalonDetail = () => {
 
     return (
         <Container>
-            <h2>Participantes del Salón</h2>
+            <h2>Reservistas del Salón</h2>
             <Table striped bordered hover>
                 <thead>
                     <tr>
@@ -34,7 +34,7 @@ const SalonDetail = () => {
                 <tbody>
                     {reservations.map((reservation, index) => (
                         <tr key={reservation.id}>
-                            <td>{index + 1}</td> {/* Aquí se muestra el número de participante */}
+                            <td>{index + 1}</td> {}
                             <td>{reservation.userName}</td>
                             <td>{reservation.userEmail}</td>
                             <td>{reservation.userPhone}</td>
