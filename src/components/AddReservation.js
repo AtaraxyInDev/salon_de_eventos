@@ -32,9 +32,13 @@ const AddReservation = () => {
         }
 
         setLoading(true);
+        
+        // Convertir la fecha a formato ISO 8601
+        const isoDate = new Date(date).toISOString();
+
         const newReservation = { 
             salon: { id: selectedSalon }, 
-            date, 
+            date: isoDate, 
             userName, 
             userEmail, 
             userPhone, 
@@ -43,6 +47,7 @@ const AddReservation = () => {
             specialPreferences, 
             confirmed: false 
         };
+
         axios.post('/api/reservations', newReservation)
             .then(response => {
                 setMessage('Reserva creada exitosamente!');

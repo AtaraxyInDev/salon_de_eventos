@@ -1,7 +1,19 @@
-// ReservationList.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Container, Row, Col, ListGroup, Button, Badge } from 'react-bootstrap';
+
+const formatDate = (isoDate) => {
+    const date = new Date(isoDate);
+    const options = { 
+        year: 'numeric', 
+        month: '2-digit', 
+        day: '2-digit', 
+        hour: '2-digit', 
+        minute: '2-digit', 
+        hour12: true //formato 12 horas con AM/PM 
+    };
+    return date.toLocaleString('es-ES', options).replace(',', '');
+};
 
 const ReservationList = () => {
     const [reservations, setReservations] = useState([]);
@@ -46,7 +58,7 @@ const ReservationList = () => {
                         <Row>
                             <Col xs={12} md={8}>
                                 <p><strong>Salón:</strong> {reservation.salon ? reservation.salon.name : 'N/A'}</p>
-                                <p><strong>Fecha:</strong> {new Date(reservation.date).toLocaleString()}</p>
+                                <p><strong>Fecha:</strong> {formatDate(reservation.date)}</p>
                                 <p><strong>Confirmada:</strong> 
                                     {reservation.confirmed ? 
                                         <Badge bg="success">Sí</Badge> : 
